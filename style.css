@@ -183,10 +183,12 @@ footer nav ul li a:hover {
         text-align: left;
         gap: 20px; /* Aralıkları artırdık */
     }
-
+@media (max-width: 768px) {
     header img {
-        max-width: 6cm;
-        height: auto;
+        max-width: 100px; /* 100px olarak ayarlandı */
+        height: auto; /* Yüksekliği orantılı tutmak için */
+    }
+}
     }
 
     header nav ul {
