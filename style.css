@@ -26,7 +26,7 @@ header {
 }
 
 header img {
-    max-width: 6cm;
+    max-width: 150px;
     height: auto;
     margin-left: 30px;
 }
@@ -63,10 +63,9 @@ main {
     background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    flex: 1; /* Hauptinhalt nimmt den verfügbaren Platz ein */
 }
 
-/* Navigation im Main */
+/* Main Navigasyon */
 main nav ul {
     list-style: none;
     display: flex;
@@ -114,13 +113,13 @@ section {
 h1 {
     text-align: center;
     color: #2c3e50;
-    margin-bottom: 30px; /* Größerer Abstand */
+    margin-bottom: 30px;
 }
 
 h2 {
     text-align: center;
     color: #1abc9c;
-    margin-top: 30px; /* Größerer Abstand */
+    margin-top: 30px;
 }
 
 /* Tabelle */
@@ -130,14 +129,14 @@ table {
     margin-top: 20px;
     background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    table-layout: fixed; /* Tabellenlayout anpassen */
+    table-layout: fixed;
 }
 
 th, td {
     padding: 12px;
     border: 1px solid #ddd;
     text-align: center;
-    word-wrap: break-word; /* Verhindert, dass Text über den Rahmen hinausgeht */
+    word-wrap: break-word;
 }
 
 th {
@@ -177,25 +176,26 @@ footer nav ul li a:hover {
     background: #1abc9c;
 }
 
-/* Responsives Design */
+/* Responsive Design */
 @media (max-width: 768px) {
     header {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row; /* Yanyana görünmesi için düzenlendi */
+        text-align: left;
+        gap: 20px; /* Aralıkları artırdık */
     }
 
     header img {
-        margin-bottom: 10px;
+        max-width: 6cm;
+        height: auto;
     }
 
     header nav ul {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 10px;
+        flex-direction: row; /* Menü öğeleri yanyana */
+        gap: 20px;
     }
 
     main nav ul {
-        flex-direction: column;
+        flex-direction: row; /* Yanyana görünmesi için düzenlendi */
     }
 
     table {
@@ -208,13 +208,13 @@ footer nav ul li a:hover {
 
     table {
         display: block;
-        overflow-x: auto; /* Erlaubt horizontales Scrollen bei kleinen Geräten */
+        overflow-x: auto;
         white-space: nowrap;
     }
 
     footer nav ul {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: row; /* Yanyana görünmesi için düzenlendi */
+        gap: 15px;
     }
 }
 
