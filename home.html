@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaveYourChildsPlanet Organisation</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Funktion zum Sortieren der Tabelle nach einer angegebenen Spalte (n)
+        function sortTable(n, isNumeric = false) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("emission-table");
+            switching = true;
+            dir = "asc"; // Start in aufsteigender Reihenfolge
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+
+                    if (isNumeric) {
+                        if (parseFloat(x.innerText) > parseFloat(y.innerText)) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else {
+                        if (x.innerText.toLowerCase() > y.innerText.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+
+
+        // Funktion zum Filtern der Tabelle nach Land oder Unternehmen
+        function filterTable() {
+            var landInput, unternehmenInput, landFilter, unternehmenFilter, table, tr, td, i, txtValue;
+            
+            landInput = document.getElementById("filterLandInput");
+            unternehmenInput = document.getElementById("filterUnternehmenInput");
+            // Eingaben desinfizieren
+    landFilter = landInput.value.toUpperCase();
+    unternehmenFilter = unternehmenInput.value.toUpperCase();
+            
+            table = document.getElementById("emission-table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0]; // Land-Spalte
+                var tdUnternehmen = tr[i].getElementsByTagName("td")[2]; // Unternehmen-Spalte
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    var unternehmenValue = tdUnternehmen.textContent || tdUnternehmen.innerText;
+
+                    if (txtValue.toUpperCase().indexOf(landFilter) > -1 && unternehmenValue.toUpperCase().indexOf(unternehmenFilter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+<header> 
+    <a href="index.html">
+        <img src="logo.webseite.jpg" alt="Logo von SaveYourChildsPlanet">
+    </a> 
+    <nav>
+        <ul>
+            <li><a href="https://www.instagram.com/SaveYourChildsPlanet">Instagram</a></li>
+            <li><a href="https://www.facebook.com/SaveYourChildsPlanet">Facebook</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <nav>
+        <ul>
+            <li><a href="home.html">Homepage</a></li>
+            <li><a href="work.html">Our work</a></li>
+            <li><a href="help.html">Help us</a></li>
+            <li><a href="join.html">Join us</a></li>
+            <li><a href="about.html">About us</a></li>
+        </ul>
+    </nav>
+
+     
+        <h1>Willkommen auf der Homepage von SaveYourChildsPlanet Organisation</h1>
+        <h2>Wer wir sind?</h2>
+        <p>Wir sind eine Non-Profit-Organisation, die sich aktiv für den Klimaschutz einsetzt. Unser Ziel ist es, CO₂-Emissionsdaten von Ländern und Unternehmen zu analysieren und transparent zu veröffentlichen, damit jeder über die Auswirkungen auf unseren Planeten informiert ist.</p>
+
+        <h2>Was wir machen?</h2>
+        <p>Wir sammeln CO₂-Emissionsdaten von Unternehmen und Ländern.</p><br>
+        <p> Unsere Experten analysieren und vergleichen die Daten.</p><br>
+        <p>Wir veröffentlichen die Ergebnisse in transparenter Tabellenform.</p><br>
+        <p> Wir sensibilisieren Menschen für eine bessere Zukunft</p><br>
+
+        <h2>Wie kannst du uns helfen?</h2>
+        <p>Du möchtest dich für den Klimaschutz engagieren? Es gibt viele Möglichkeiten, uns zu unterstützen:</p><br>
+        <p>Daten sammeln und analysieren</p><br>
+        <p>Technische Unterstützung</p><br>
+        <p>Social Media & PR:</p><br>
+
+        <h2>Werde Teil von SaveYourChildsPlanet! </h2>
+        <p>Wir sind immer auf der Suche nach motivierten Menschen, die etwas bewegen wollen. Egal, ob du freiwillig helfen oder langfristig mitwirken möchtest – jede Hilfe zählt!</p>
+<br>
+<p>Schreib uns :Saveplanet255@hotmail.com</p><br>
+<p>Telefoniere uns:177889978</p><br>
+        
+
+    <section>
+        <h2>CO₂-Emissionsdaten - 2023</h2>
+
+        <!-- Filterfelder für Land und Unternehmen -->
+        <input type="text" id="filterLandInput" onkeyup="filterTable()" placeholder="Nach Land filtern..." style="margin-bottom: 10px; padding: 5px; width: 48%; float: left; margin-right: 10px;">
+        <input type="text" id="filterUnternehmenInput" onkeyup="filterTable()" placeholder="Nach Unternehmen filtern..." style="margin-bottom: 10px; padding: 5px; width: 48%;">
+
+        <!-- Hinweis für die Sortierung -->
+        <p style="font-style: italic; color: gray; margin-top: 10px;">Für die Sortierung bitte auf die Spaltenüberschrift klicken.</p>
+
+        <table id="emission-table" border="1" style="clear: both; margin-top: 20px; width: 100%;">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Land</th>
+                    <th onclick="sortTable(1, true)">Emission (Mrd. Tonnen/Jahr)</th>
+                    <th onclick="sortTable(2)">Unternehmen</th>
+                    <th onclick="sortTable(3, true)">Emission (Mio. Tonnen/Jahr)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Saudi-Arabien</td>
+                    <td>24,4</td>
+                    <td>Global Fact</td>
+                    <td>2,5</td>
+                </tr>
+                <tr>
+                    <td>Russland</td>
+                    <td>22,9</td>
+                    <td>Star GmbH</td>
+                    <td>2,2</td>
+                </tr>
+                <tr>
+                    <td>Katar</td>
+                    <td>18,9</td>
+                    <td>Yummy Yum</td>
+                    <td>2,0</td>
+                </tr>
+                <tr>
+                    <td>USA</td>
+                    <td>18,0</td>
+                    <td>Cuma</td>
+                    <td>1,8</td>
+                </tr>
+                <tr>
+                    <td>China</td>
+                    <td>14,8</td>
+                    <td>Sunday COOP</td>
+                    <td>1,4</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<footer>
+    <nav>
+        <ul>
+            <li><a href="privacy.html">Datenschutz</a></li>
+            <li><a href="imprint.html">Impressum</a></li>
+        </ul>
+    </nav>
+</footer>
+
+</body>
+</html>
